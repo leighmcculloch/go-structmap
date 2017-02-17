@@ -28,6 +28,7 @@ func ExampleStruct() {
 		"A": "text",
 		"B": 123,
 	}
+
 	Struct(&s, m)
 
 	fmt.Println(s)
