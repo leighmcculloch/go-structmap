@@ -1,9 +1,5 @@
 language: go
 
-os:
-  - linux
-  - osx
-
 script:
   - go test -coverprofile=coverage.txt -bench=. -benchmem
 
