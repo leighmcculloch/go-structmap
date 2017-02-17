@@ -1,4 +1,9 @@
 # structmap
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/leighmcculloch/go-structmap)](https://goreportcard.com/report/github.com/leighmcculloch/go-structmap)
+[![Build Status](https://img.shields.io/travis/leighmcculloch/go-structmap.svg)](https://travis-ci.org/leighmcculloch/go-structmap)
+[![Go docs](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/leighmcculloch/go-structmap)
+
 A go package for converting structs to maps, and maps to structs.
 
 ## Usage
