@@ -4,16 +4,16 @@ import "fmt"
 
 func ExampleMap() {
 	s := struct {
-		FieldA string
-		FieldB int
+		A string
+		B int
 	}{
-		FieldA: "text",
-		FieldB: 123,
+		A: "text",
+		B: 123,
 	}
 
 	m := Map(s)
 
-	fmt.Println(m["FieldA"], m["FieldB"])
+	fmt.Println(m["A"], m["B"])
 
 	// Output:
 	// text 123
@@ -21,12 +21,12 @@ func ExampleMap() {
 
 func ExampleStruct() {
 	s := struct {
-		FieldA string
-		FieldB int
+		A string
+		B int
 	}{}
 	m := map[string]interface{}{
-		"FieldA": "text",
-		"FieldB": 123,
+		"A": "text",
+		"B": 123,
 	}
 	Struct(&s, m)
 
