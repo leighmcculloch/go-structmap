@@ -35,10 +35,13 @@ func main() {
   // s2 is {text 123}
 }
 ```
+## Why
 
-## Why not to use
+Inspired by [fatih/structs](https://github.com/fatih/structs) and [mitchellh/mapstructure](https://github.com/mitchellh/mapstructure), but focuses purely on creating an exact one-to-one mapping of a struct and a map without any additional weight of tags, hooks, etc.
 
-It is more performant and the compiler can provide more safety checks if you do the following instead.
+## Why not
+
+It is more performant and the compiler can provide more safety checks if you manually write the code to map and create structs manually. Follow the pattern below instead, and only use this package if it _really_ adds value.
 
 ```go
 type S {
