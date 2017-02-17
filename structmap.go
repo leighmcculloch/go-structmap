@@ -1,3 +1,4 @@
+// Package structmap converts structs to maps, and maps to structs.
 package structmap
 
 import (
