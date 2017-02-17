@@ -13,10 +13,10 @@ func ExampleMap() {
 
 	m := Map(s)
 
-	fmt.Println(m)
+	fmt.Println(m["FieldA"], m["FieldB"])
 
 	// Output:
-	// map[FieldA:text FieldB:123]
+	// text 123
 }
 
 func ExampleStruct() {
