@@ -29,7 +29,7 @@ func ExampleStruct() {
 		"B": 123,
 	}
 
-	Struct(&s, m)
+	Struct(m, &s)
 
 	fmt.Println(s)
 

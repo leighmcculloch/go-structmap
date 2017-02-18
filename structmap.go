@@ -20,7 +20,7 @@ func Map(s interface{}) map[string]interface{} {
 }
 
 // Struct fills a struct with the values in the map.
-func Struct(s interface{}, m map[string]interface{}) {
+func Struct(m map[string]interface{}, s interface{}) {
 	v := reflect.ValueOf(s)
 
 	for mk, mv := range m {

@@ -67,7 +67,7 @@ func TestStruct(t *testing.T) {
 	for _, test := range tests {
 
 		var s testStruct
-		Struct(&s, test.Map)
+		Struct(test.Map, &s)
 		if test.ExpectedStruct != s {
 			t.Errorf("Struct %v got %v, want %v", test.Map, s, test.ExpectedStruct)
 		}
@@ -102,7 +102,7 @@ func TestStructPanic(t *testing.T) {
 			}()
 
 			var s testStruct
-			Struct(&s, test.Map)
+			Struct(test.Map, &s)
 		}()
 	}
 }
