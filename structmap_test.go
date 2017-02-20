@@ -7,7 +7,9 @@ import (
 
 type testStruct struct {
 	FieldA string
-	FieldB int
+	FieldB int `structmap:"b"`
+	FieldC string `structmap:"c,omitempty"`
+	FieldD string `structmap:",omitempty"`
 }
 
 func TestMap(t *testing.T) {
@@ -16,16 +18,20 @@ func TestMap(t *testing.T) {
 		ExpectedMap map[string]interface{}
 	}{
 		{
-			testStruct{FieldA: "text", FieldB: 123},
-			map[string]interface{}{"FieldA": "text", "FieldB": 123},
+			testStruct{FieldA: "text", FieldB: 123, FieldC: "123", FieldD: "456"},
+			map[string]interface{}{"FieldA": "text", "b": 123, "c": "123", "FieldD": "456"},
+		},
+		{
+			testStruct{FieldA: "text", FieldB: 123, FieldC: "123"},
+			map[string]interface{}{"FieldA": "text", "b": 123, "c": "123"},
 		},
 		{
 			testStruct{FieldB: 123},
-			map[string]interface{}{"FieldA": "", "FieldB": 123},
+			map[string]interface{}{"FieldA": "", "b": 123},
 		},
 		{
 			testStruct{},
-			map[string]interface{}{"FieldA": "", "FieldB": 0},
+			map[string]interface{}{"FieldA": "", "b": 0},
 		},
 	}
 
@@ -43,19 +49,19 @@ func TestStruct(t *testing.T) {
 		ExpectedStruct testStruct
 	}{
 		{
-			map[string]interface{}{"FieldA": "text", "FieldB": 123},
+			map[string]interface{}{"FieldA": "text", "b": 123},
 			testStruct{FieldA: "text", FieldB: 123},
 		},
 		{
-			map[string]interface{}{"FieldA": "", "FieldB": 123},
+			map[string]interface{}{"FieldA": "", "b": 123},
 			testStruct{FieldB: 123},
 		},
 		{
-			map[string]interface{}{"FieldA": "", "FieldB": 0},
+			map[string]interface{}{"FieldA": "", "b": 0},
 			testStruct{},
 		},
 		{
-			map[string]interface{}{"FieldB": 123},
+			map[string]interface{}{"b": 123},
 			testStruct{FieldB: 123},
 		},
 		{
@@ -74,35 +80,30 @@ func TestStruct(t *testing.T) {
 	}
 }
 
-func TestStructPanic(t *testing.T) {
+func TestStructIgnoreMapKeysNotInStruct(t *testing.T) {
 	tests := []struct {
 		Map           map[string]interface{}
-		ExpectedPanic string
+		ExpectedStruct testStruct
 	}{
 		{
-			map[string]interface{}{"FieldC": ""},
-			"Field FieldC does not exist on *structmap.testStruct",
+			map[string]interface{}{"FieldE": ""},
+			testStruct{},
 		},
 		{
-			map[string]interface{}{"FieldA": "text", "FieldC": ""},
-			"Field FieldC does not exist on *structmap.testStruct",
+			map[string]interface{}{"FieldA": "text", "FieldE": ""},
+			testStruct{FieldA:"text"},
+		},
+		{
+			map[string]interface{}{"FieldB": 123},
+			testStruct{},
 		},
 	}
 
 	for _, test := range tests {
-		func() {
-			defer func() {
-				if r := recover(); r != nil {
-					if r.(error).Error() != test.ExpectedPanic {
-						t.Errorf("Got panic %s, want %s", r, test.ExpectedPanic)
-					}
-				} else {
-					t.Errorf("Did not panic, want %s", test.ExpectedPanic)
-				}
-			}()
-
-			var s testStruct
-			Struct(test.Map, &s)
-		}()
+		var s testStruct
+		Struct(test.Map, &s)
+		if test.ExpectedStruct != s {
+			t.Errorf("Struct %v got %v, want %v", test.Map, s, test.ExpectedStruct)
+		}
 	}
 }

@@ -19,8 +19,8 @@ go get github.com/leighmcculloch/go-structmap
 import "github.com/leighmcculloch/go-structmap"
 
 type S {
-  A string
-  B int
+  A string `structmap:"a,omitempty"`
+  B int `structmap:"b"`
 }
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
   }
 
   m := structmap.Map(s)
-  // m is map[A:text B:123]
+  // m is map[a:text b:123]
 
   var s2 S
   structmap.Struct(&s2, m)
