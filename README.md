@@ -7,6 +7,8 @@
 
 A go package for converting structs to maps, and maps to structs.
 
+I mostly wrote this for fun and to learn how to use reflection in Go. I don't recommend using this package, because like it and similar libraries it is a complex solution where a simpler one can be used instead. See the [why not](#why-not) section below.
+
 ## Usage
 
 ```
@@ -41,7 +43,7 @@ Inspired by [fatih/structs](https://github.com/fatih/structs) and [mitchellh/map
 
 ## Why not
 
-It is more performant and the compiler can provide more safety checks if you manually write the code to map and create structs manually. Follow the pattern below instead, and only use this package if it _really_ adds value.
+There is a simpler way to solve this problem in many cases:
 
 ```go
 type S {
