@@ -23,8 +23,9 @@ func Map(s interface{}) map[string]interface{} {
 func Struct(m map[string]interface{}, s interface{}) {
 	v := reflect.ValueOf(s)
 
+	e := v.Elem()
 	for mk, mv := range m {
-		f := v.Elem().FieldByName(mk)
+		f := e.FieldByName(mk)
 		if !f.IsValid() {
 			panic(fmt.Errorf("Field %s does not exist on %s", mk, v.Type()))
 		}
