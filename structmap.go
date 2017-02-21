@@ -36,7 +36,12 @@ func Map(s interface{}) map[string]interface{} {
 			continue
 		}
 
-		m[key] = fv.Interface()
+		value := fv.Interface()
+		if f.Type.Kind() == reflect.Struct {
+			value = Map(value)
+		}
+
+		m[key] = value
 	}
 
 	return m
@@ -54,14 +59,17 @@ func Struct(m map[string]interface{}, s interface{}) {
 
 		var key string
 		if tagValue, ok := f.Tag.Lookup(tagKey); ok {
-			tag := structtags.Parse(tagValue)
-			key = tag.Value
+			key = structtags.Parse(tagValue).Value
 		} else {
 			key = f.Name
 		}
 
 		if value, ok := m[key]; ok {
-			fv.Set(reflect.ValueOf(value))
+			if f.Type.Kind() == reflect.Struct {
+				Struct(value.(map[string]interface{}), fv.Addr().Interface())
+			} else {
+				fv.Set(reflect.ValueOf(value))
+			}
 		}
 	}
 }
