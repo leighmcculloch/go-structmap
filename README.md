@@ -11,32 +11,8 @@ I mostly wrote this for fun and to learn how to use reflection in Go. I don't re
 
 ## Usage
 
-```
-go get github.com/leighmcculloch/go-structmap
-```
+See the example in [Go Doc](https://godoc.org/github.com/leighmcculloch/go-structmap).
 
-```go
-import "github.com/leighmcculloch/go-structmap"
-
-type S {
-  A string `structmap:"a,omitempty"`
-  B int `structmap:"b"`
-}
-
-func main() {
-  s := S{
-    A: "text",
-    B: 123,
-  }
-
-  m := structmap.Map(s)
-  // m is map[a:text b:123]
-
-  var s2 S
-  structmap.Struct(&s2, m)
-  // s2 is {text 123}
-}
-```
 ## Why
 
 Inspired by [fatih/structs](https://github.com/fatih/structs) and [mitchellh/mapstructure](https://github.com/mitchellh/mapstructure), but focuses purely on creating an exact one-to-one mapping of a struct and a map without any additional weight of tags, hooks, etc.
