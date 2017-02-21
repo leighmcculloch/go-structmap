@@ -13,11 +13,7 @@ I mostly wrote this for fun and to learn how to use reflection in Go. I don't re
 
 See the example in [Go Doc](https://godoc.org/github.com/leighmcculloch/go-structmap).
 
-## Why
-
-Inspired by [fatih/structs](https://github.com/fatih/structs) and [mitchellh/mapstructure](https://github.com/mitchellh/mapstructure), but focuses purely on creating an exact one-to-one mapping of a struct and a map without any additional weight of tags, hooks, etc.
-
-## Why not
+## Why not to use this or similar packages
 
 There is a simpler way to solve this problem in many cases:
 
