@@ -3,7 +3,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/leighmcculloch/go-structmap)](https://goreportcard.com/report/github.com/leighmcculloch/go-structmap)
 [![Codecov](https://img.shields.io/codecov/c/github/leighmcculloch/go-structmap.svg)](https://codecov.io/gh/leighmcculloch/go-structmap)
 [![Build Status](https://img.shields.io/travis/leighmcculloch/go-structmap.svg)](https://travis-ci.org/leighmcculloch/go-structmap)
-[![Go docs](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/leighmcculloch/go-structmap)
+[![Go docs](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/4d63.com/structmap)
 
 A go package for converting structs to maps, and maps to structs.
 
@@ -11,7 +11,7 @@ I mostly wrote this for fun and to learn how to use reflection in Go. I don't re
 
 ## Usage
 
-See the example in [Go Doc](https://godoc.org/github.com/leighmcculloch/go-structmap).
+See the example in [Go Doc](https://godoc.org/4d63.com/structmap).
 
 ## Why not to use this or similar packages
 

@@ -4,8 +4,8 @@ package structmap
 import (
 	"reflect"
 
-	"github.com/leighmcculloch/go-iszero"
-	structtags "github.com/leighmcculloch/go-structtags"
+	"4d63.com/iszero"
+	"4d63.com/structtags"
 )
 
 const tagKey = "structmap"

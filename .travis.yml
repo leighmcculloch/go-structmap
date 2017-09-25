@@ -1,5 +1,7 @@
 language: go
 
+go_import_path: 4d63.com/structmap
+
 script:
   - go test -coverprofile=coverage.txt -bench=. -benchmem
 
